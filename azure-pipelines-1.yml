@@ -27,7 +27,7 @@ stages:
         dockerRegistryEndpoint: 'dockerhub'
         command: 'build'
         dockerfile: '$(Build.SourcesDirectory)/exerciseoftheday/Dockerfile'
-        imageName: 'tt'
+        imageName: 'sudiptod/image'
         includeLatestTag: true
         tags: |
           $(tag)
@@ -37,6 +37,6 @@ stages:
         containerregistrytype: 'Container Registry'
         dockerRegistryEndpoint: 'dockerhub'
         command: 'push'
-        imageName: 'tt'
+        imageName: 'sudiptod/image'
         tags: |
           $(tag)
