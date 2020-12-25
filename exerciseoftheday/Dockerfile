@@ -33,3 +33,7 @@ COPY exerciseoftheday /var/www/html/exerciseoftheday
 CMD /usr/sbin/apache2ctl -D FOREGROUND
 # Set working directory for exerciseoftheday
 WORKDIR /var/www/html/exerciseoftheday
+
+
+
+
