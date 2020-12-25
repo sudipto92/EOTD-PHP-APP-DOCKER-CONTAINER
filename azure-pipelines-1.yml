@@ -25,7 +25,7 @@ stages:
       inputs:
         containerregistrytype: 'Container Registry'
         dockerRegistryEndpoint: 'dockerhub'
-        command: 'build'
+        command: 'buildAndPush'
         dockerfile: '$(Build.SourcesDirectory)/exerciseoftheday/Dockerfile'
         imageName: 'tt'
         includeLatestTag: true
