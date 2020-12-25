@@ -28,7 +28,7 @@ COPY apache2.conf /etc/apache2/apache2.conf
 # Copy the samsoncz folder into the DocumentRoot directory var
 COPY exerciseoftheday /var/www/html/exerciseoftheday
 # Copy the phpinfo.php into the DocumentRoot directory
-COPY phpinfo.php /var/www/html
+#COPY phpinfo.php /var/www/html
 # By default start up apache in the foreground, override with /bin/bash for interative.
 CMD /usr/sbin/apache2ctl -D FOREGROUND
 # Set working directory for exerciseoftheday
