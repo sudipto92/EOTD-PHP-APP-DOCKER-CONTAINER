@@ -29,7 +29,5 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/exerciseoftheday/Dockerfile'
         imageName: 'tt'
         includeLatestTag: true
-        useDefaultContext: false
-        buildContext: '.'
         tags: |
           $(tag)
