@@ -20,19 +20,16 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    - task: Docker@2
-      displayName: Build an image
+    - task: Docker@1
+      displayName: 'Build the Docker image'
       inputs:
-        command: build
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'dockerhub'
+        command: 'build'
         dockerfile: '$(Build.SourcesDirectory)/exerciseoftheday/Dockerfile'
-        tags: |
-          $(tag)
-    - task: Docker@2
-      displayName: Push image
-      inputs:
-        containerRegistry: |
-          $(dockerHub)
-        repository: $(imageName)
-        command: push
+        imageName: 'tt'
+        includeLatestTag: true
+        useDefaultContext: false
+        buildContext: '.'
         tags: |
           $(tag)
