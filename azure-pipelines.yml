@@ -1,26 +1,36 @@
-# PHP
-# Test and package your PHP project.
-# Add steps that run tests, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/php
-
 trigger:
 - main
 
-pool:
-  test
+resources:
+- repo: self
 
 variables:
-  phpVersion: 7.2
+  tag: '$(Build.BuildId)'
 
-steps:
-- script: |
-    sudo update-alternatives --set php /usr/bin/php$(phpVersion)
-    sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
-    sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
-    sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
-    sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
-    php -version
-  displayName: 'Use PHP version $(phpVersion)'
-
-- script: composer install --no-interaction --prefer-dist
-  displayName: 'composer install'
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      test
+    steps:
+    - task: Docker@1
+      displayName: 'Build the Docker image'
+      inputs:
+        command: 'build'
+        dockerfile: '$(Build.SourcesDirectory)/exerciseoftheday/Dockerfile'
+        imageName: 'sudiptod/image'
+        includeLatestTag: true
+        tags: |
+          $(tag)
+    - task: Docker@1
+      displayName: 'Push the Docker image'
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'dockerhub'
+        command: 'push'
+        imageName: 'sudiptod/image'
+        tags: |
+          $(tag)
