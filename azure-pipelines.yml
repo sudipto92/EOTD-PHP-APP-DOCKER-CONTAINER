@@ -25,11 +25,12 @@ stages:
         includeLatestTag: true
         tags: |
           $(tag)
-    - task: Docker@2
-      displayName: 'Push the Docker image'
+    - task: Docker@1
+      displayName: 'Push the Docker image to Dockerhub'
       inputs:
         containerregistrytype: 'Container Registry'
         dockerRegistryEndpoint: 'Docker Hub'
-        command: 'push'
+        command: 'Push an image'
         imageName: 'sudiptod/image1:latest'
       condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+         
