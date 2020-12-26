@@ -34,3 +34,4 @@ stages:
         imageName: 'sudiptod/image1'
         tags: |
           $(tag)
+      condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
