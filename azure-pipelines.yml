@@ -30,5 +30,6 @@ stages:
       inputs:
         containerregistrytype: 'Container Registry'
         dockerRegistryEndpoint: 'Docker Hub'
-        command: 'push sudiptod/image1'
+        command: 'push'
+        imageName: 'sudiptod/image1:latest'
       condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
