@@ -30,8 +30,5 @@ stages:
       inputs:
         containerregistrytype: 'Container Registry'
         dockerRegistryEndpoint: 'Docker Hub'
-        command: 'push'
-        imageName: 'sudiptod/image1'
-        tags: |
-          $(tag)
+        command: 'push sudiptod/image1'
       condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
