@@ -30,7 +30,7 @@ stages:
       inputs:
         containerregistrytype: 'Container Registry'
         dockerRegistryEndpoint: 'dockerhub'
-        command: 'push'
+        command: 'Push an image'
         imageName: 'sudiptod/image1'
         tags: |
           $(tag)
