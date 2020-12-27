@@ -32,5 +32,4 @@ stages:
         dockerRegistryEndpoint: 'Docker Hub'
         command: 'Push an image'
         imageName: 'sudiptod/image1:latest'
-      condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
          
